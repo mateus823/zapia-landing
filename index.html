@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZapIA Nexus — WhatsApp com IA 24/7 | Parceiro Oficial Meta</title>
+  <meta name="description" content="Automatize seu WhatsApp com IA. Venda, atenda e converta 24/7 usando a API oficial da Meta. Sem risco de banimento." />
+  <meta property="og:title" content="ZapIA Nexus — WhatsApp com IA 24/7" />
+  <meta property="og:description" content="Automatize, venda e atenda com IA integrada. API oficial Meta." />
+  <meta property="og:url" content="https://zapianexus.com.br" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --g:#00ff88;--gd:rgba(0,255,136,0.12);--gg:rgba(0,255,136,0.35);
+      --gs:rgba(0,255,136,0.08);--bg:#0a0a0a;--bg2:#0d0d0d;
+      --s1:#111111;--s2:#161616;--b:rgba(0,255,136,0.1);
+      --bb:rgba(0,255,136,0.28);--t:#f0f0f0;--td:#999;--m:#555;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;cursor:none}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+    ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gd);border-radius:2px}
+
+    /* CURSOR */
+    .cur-dot{width:8px;height:8px;background:var(--g);border-radius:50%;position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:10000;transition:transform .1s ease, width .2s, height .2s;will-change:transform}
+    .cur-ring{width:30px;height:30px;border:1px solid var(--g);border-radius:50%;position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;opacity:.45;transition:width .2s,height .2s,opacity .2s;will-change:transform}
+
+    /* GRAIN */
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.5}
+
+    /* NAV */
+    nav{position:fixed;top:0;width:100%;z-index:1000;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,.85);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--b);transition:padding .3s}
+    nav.scrolled{padding:.65rem 5%}
+    .logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-.03em;text-decoration:none;color:var(--t);display:flex;align-items:center;gap:.5rem}
+    .logo-icon{width:30px;height:30px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+    .logo em{color:var(--g);font-style:normal}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{color:var(--m);text-decoration:none;font-size:.875rem;transition:color .2s}
+    .nav-links a:hover{color:var(--t)}
+    .nav-actions{display:flex;gap:.75rem;align-items:center}
+    .btn-ghost{color:var(--td);text-decoration:none;font-size:.875rem;font-weight:500;padding:.5rem 1.1rem;border:1px solid var(--b);border-radius:100px;transition:all .2s}
+    .btn-ghost:hover{color:var(--g);border-color:var(--g)}
+    .btn-cta{background:var(--g);color:#000;text-decoration:none;font-weight:600;font-size:.875rem;padding:.55rem 1.3rem;border-radius:100px;border:none;cursor:none;font-family:'Inter',sans-serif;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.4rem}
+    .btn-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--gg)}
+    .btn-cta-lg{font-size:1.05rem;padding:.9rem 2.2rem}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:none;background:none;border:none;padding:4px}
+    .hamburger span{width:22px;height:2px;background:var(--t);border-radius:2px;transition:all .3s}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:9rem 5% 5rem;position:relative;overflow:hidden}
+    #pcanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,255,136,.055) 0%,transparent 70%);pointer-events:none;z-index:0}
+    .hero-inner{position:relative;z-index:1;width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+
+    /* BADGE */
+    .partner-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--gd);border:1px solid var(--bb);border-radius:100px;padding:.35rem .9rem;font-size:.78rem;font-weight:500;color:var(--g);margin-bottom:1.5rem;animation:badgePulse 2.5s ease-in-out infinite,fadeUp .6s .1s both;width:fit-content}
+    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+    @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 6px rgba(0,255,136,.05),0 0 20px rgba(0,255,136,.08)}}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
+
+    /* H1 */
+    h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:700;line-height:1.05;letter-spacing:-.04em;animation:fadeUp .7s .2s both}
+    .tw-wrap{display:block;color:var(--g)}
+    .tw-word{border-right:3px solid var(--g);padding-right:4px;white-space:nowrap;display:inline-block;min-width:2ch}
+    .tw-blink{animation:blink .7s step-end infinite}
+    @keyframes blink{0%,100%{border-color:var(--g)}50%{border-color:transparent}}
+    .h1-sub{color:var(--td);font-weight:400;font-size:.62em;letter-spacing:-.015em;display:block;margin-top:.15em}
+
+    .hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--td);line-height:1.7;margin-top:1.4rem;font-weight:300;max-width:480px;animation:fadeUp .7s .35s both}
+    .hero-actions{display:flex;gap:1rem;margin-top:2rem;align-items:center;flex-wrap:wrap;animation:fadeUp .7s .5s both}
+
+    /* SEALS */
+    .trust-seals{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:2rem;animation:fadeUp .7s .65s both}
+    .seal{display:inline-flex;align-items:center;gap:.3rem;font-size:.74rem;color:var(--m);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:.28rem .8rem}
+    .seal-check{color:var(--g);font-size:.7rem}
+
+    /* BOT CARD */
+    .hero-right{animation:fadeUp .8s .4s both}
+    .bot-wrap{position:relative;animation:float 4s ease-in-out infinite;will-change:transform}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .bot-card{background:var(--s1);border:1px solid var(--b);border-radius:24px;overflow:hidden;max-width:380px;margin:0 auto;box-shadow:0 0 0 1px var(--b),0 0 60px var(--gs),0 40px 80px rgba(0,0,0,.6);position:relative}
+    .bot-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent);opacity:.55}
+    .bot-hdr{display:flex;align-items:center;gap:.85rem;padding:1rem 1.3rem;border-bottom:1px solid var(--b);background:rgba(0,255,136,.025)}
+    .bot-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--g),#00cc6a);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#000;font-family:'Space Grotesk',sans-serif;flex-shrink:0}
+    .bot-name-el{font-size:.9rem;font-weight:600;line-height:1.3}
+    .bot-status-el{font-size:.7rem;color:var(--g);display:flex;align-items:center;gap:.25rem}
+    .sdot{width:5px;height:5px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+    .wdots{margin-left:auto;display:flex;gap:.35rem}
+    .wdot{width:10px;height:10px;border-radius:50%}
+    .wdot:nth-child(1){background:#ff5f56}.wdot:nth-child(2){background:#ffbd2e}.wdot:nth-child(3){background:#27c93f}
+    .bot-msgs{padding:1.2rem;display:flex;flex-direction:column;gap:.6rem}
+    .msg{padding:.6rem .9rem;border-radius:16px;font-size:.8rem;line-height:1.5;max-width:85%}
+    .msg-in{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);align-self:flex-start;border-bottom-left-radius:4px;color:var(--td)}
+    .msg-out{background:var(--g);color:#000;font-weight:500;align-self:flex-end;border-bottom-right-radius:4px}
+    .msg-t{font-size:.64rem;color:rgba(0,0,0,.45);text-align:right;margin-top:.2rem}
+    .typing{display:flex;align-items:center;gap:4px;padding:.6rem .9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:16px;border-bottom-left-radius:4px;width:fit-content}
+    .typing span{width:5px;height:5px;border-radius:50%;background:var(--g);opacity:.4;animation:tdot 1.2s infinite}
+    .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+    @keyframes tdot{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-4px);opacity:1}}
+
+    /* FLOATING CARD BADGES */
+    .fbadge{position:absolute;background:var(--s1);border:1px solid var(--b);border-radius:12px;padding:.5rem .85rem;font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.4rem;box-shadow:0 8px 32px rgba(0,0,0,.5);white-space:nowrap;z-index:2}
+    .fbadge-1{top:-16px;right:-20px;animation:float 3.5s .5s ease-in-out infinite;color:var(--g)}
+    .fbadge-2{bottom:30px;left:-24px;animation:float 4s 1s ease-in-out infinite;color:var(--td)}
+
+    /* KEYFRAMES */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+    /* STATS */
+    .stats-wrap{border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1180px;margin:0 auto;padding:0 5%}
+    .stat-item{padding:3.5rem 2rem;border-right:1px solid var(--b);text-align:center;position:relative}
+    .stat-item:last-child{border-right:none}
+    .stat-item::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--g);transition:width .8s ease}
+    .stat-item.counted::after{width:50px}
+    .stat-num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,4vw,3.5rem);font-weight:700;line-height:1;color:var(--g);letter-spacing:-.03em}
+    .stat-desc{color:var(--m);font-size:.85rem;margin-top:.5rem}
+
+    /* SECTION SHARED */
+    section{padding:7rem 5%}
+    .sec-inner{max-width:1180px;margin:0 auto}
+    .sec-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--g);font-weight:600;margin-bottom:.9rem}
+    .sec-tag::before{content:'';width:14px;height:1px;background:var(--g)}
+    .sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;line-height:1.12;letter-spacing:-.03em;margin-bottom:.75rem}
+    .sec-sub{color:var(--td);font-size:.95rem;line-height:1.7;max-width:460px;font-weight:300}
+
+    /* FEATURES */
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3.5rem;background:var(--b);border:1px solid var(--b);border-radius:20px;overflow:hidden}
+    .feat{background:var(--bg);padding:2.2rem;position:relative;overflow:hidden;transition:background .3s}
+    .feat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gd) 0%,transparent 60%);opacity:0;transition:opacity .35s}
+    .feat:hover{background:var(--s1)}
+    .feat:hover::before{opacity:1}
+    .feat:hover .feat-icon{transform:scale(1.12)}
+    .feat-icon{font-size:1.8rem;margin-bottom:1rem;display:block;transition:transform .3s;position:relative;z-index:1}
+    .feat-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:.55rem;position:relative;z-index:1}
+    .feat-desc{font-size:.875rem;color:var(--td);line-height:1.6;font-weight:300;position:relative;z-index:1}
+
+    /* TIMELINE */
+    .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .timeline{position:relative;margin-top:3rem;padding-left:3rem}
+    .tl-line{position:absolute;left:11px;top:12px;width:2px;background:var(--b);height:calc(100% - 12px)}
+    .tl-fill{position:absolute;left:11px;top:12px;width:2px;background:linear-gradient(to bottom,var(--g),transparent);height:0;transition:height 1.4s ease}
+    .tl-step{position:relative;padding-bottom:2.8rem}
+    .tl-step:last-child{padding-bottom:0}
+    .tl-dot{position:absolute;left:-3rem;top:2px;width:24px;height:24px;background:var(--s1);border:2px solid var(--b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--m);font-family:'Space Grotesk',sans-serif;transition:border-color .4s,color .4s,box-shadow .4s}
+    .tl-step.active .tl-dot{border-color:var(--g);color:var(--g);box-shadow:0 0 14px rgba(0,255,136,.3)}
+    .tl-num{font-size:.68rem;color:var(--g);font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
+    .tl-title{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:.45rem}
+    .tl-desc{font-size:.875rem;color:var(--td);line-height:1.65;font-weight:300;max-width:420px}
+
+    /* PRICING */
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;align-items:start}
+    .price-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+    .price-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+    .price-card.hot{border-color:var(--g);background:var(--s2);transform:scale(1.03);box-shadow:0 0 0 1px var(--g),0 0 60px rgba(0,255,136,.1),0 24px 60px rgba(0,0,0,.4)}
+    .price-card.hot:hover{transform:scale(1.03) translateY(-5px)}
+    .price-card.hot::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+    .price-card.hot::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,.03) 0%,transparent 60%);pointer-events:none}
+    .hot-badge{display:inline-flex;align-items:center;gap:.3rem;background:var(--g);color:#000;font-size:.7rem;font-weight:700;padding:.25rem .7rem;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.2rem;font-family:'Space Grotesk',sans-serif}
+    .plan-name{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:var(--m);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+    .plan-price{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.2rem}
+    .plan-price sup{font-size:1.1rem;vertical-align:top;margin-top:.4rem;margin-right:.1rem}
+    .plan-period{font-size:.85rem;color:var(--m);font-weight:400;margin-bottom:1.5rem}
+    .plan-divider{height:1px;background:var(--b);margin:1.5rem 0}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem}
+    .plan-features li{display:flex;align-items:flex-start;gap:.55rem;font-size:.875rem;color:var(--td);line-height:1.4}
+    .plan-features li::before{content:'✓';color:var(--g);font-size:.78rem;flex-shrink:0;margin-top:.1rem}
+    .plan-btn{display:block;width:100%;text-align:center;text-decoration:none;padding:.85rem;border-radius:12px;font-weight:600;font-size:.88rem;font-family:'Space Grotesk',sans-serif;transition:all .25s;cursor:none;border:none}
+    .plan-btn-ol{border:1px solid var(--b);color:var(--t);background:transparent}
+    .plan-btn-ol:hover{border-color:var(--g);color:var(--g)}
+    .plan-btn-solid{background:var(--g);color:#000}
+    .plan-btn-solid:hover{box-shadow:0 8px 30px var(--gg);transform:translateY(-1px)}
+
+    /* TESTIMONIALS */
+    .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+    .test-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s,border-color .3s}
+    .test-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.4);border-color:var(--bb)}
+    .test-stars{color:var(--g);font-size:.78rem;letter-spacing:.1em;margin-bottom:.9rem}
+    .test-quote{font-size:.88rem;line-height:1.7;color:var(--td);font-weight:300;margin-bottom:1.4rem;font-style:italic}
+    .test-author{display:flex;align-items:center;gap:.75rem}
+    .test-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;color:#000;flex-shrink:0}
+    .test-name{font-size:.875rem;font-weight:600}
+    .test-role{font-size:.73rem;color:var(--m)}
+
+    /* CTA */
+    .cta-section{padding:7rem 5%;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 110%,rgba(0,255,136,.07) 0%,transparent 70%);pointer-events:none}
+    .cta-inner{max-width:660px;margin:0 auto;text-align:center;position:relative;z-index:1}
+    .cta-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.12;letter-spacing:-.03em;margin-bottom:1rem}
+    .cta-sub{color:var(--td);font-size:.95rem;margin-bottom:2rem;line-height:1.6}
+    .cta-note{font-size:.78rem;color:var(--m);margin-top:1rem}
+
+    /* META BADGE */
+    .meta-wrap{display:flex;justify-content:center;padding:0 5% 4rem}
+    .meta-badge{display:inline-flex;align-items:center;gap:.75rem;background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:.9rem 1.5rem;transition:border-color .3s,box-shadow .3s}
+    .meta-badge:hover{border-color:var(--bb);box-shadow:0 0 30px rgba(0,255,136,.06)}
+    .meta-icon{width:28px;height:28px;background:linear-gradient(135deg,#0082fb,#0052cc);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:#fff;font-family:serif}
+    .meta-txt .meta-title{font-size:.82rem;font-weight:600;color:var(--t)}
+    .meta-txt .meta-sub{font-size:.72rem;color:var(--m)}
+    .meta-verified{margin-left:auto;color:var(--g);font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.3rem}
+
+    /* FOOTER */
+    footer{padding:2.5rem 5%;border-top:1px solid var(--b)}
+    .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.78rem;color:var(--m)}
+    .footer-links{display:flex;gap:1.5rem;list-style:none}
+    .footer-links a{font-size:.78rem;color:var(--m);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--g)}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .stat-item:nth-child(2){border-right:none}
+      .pricing-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+      .price-card.hot{transform:scale(1)}
+      .price-card.hot:hover{transform:translateY(-5px)}
+      .test-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
+      .how-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      body{cursor:auto}
+      .cur-dot,.cur-ring{display:none}
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .hero-inner{grid-template-columns:1fr}
+      .hero-right{display:none}
+      h1{font-size:clamp(2.2rem,8vw,3rem)}
+      .features-grid{grid-template-columns:1fr}
+      section{padding:5rem 5%}
+      .timeline{padding-left:2.5rem}
+    }
+    @media(max-width:480px){
+      .stats-grid{grid-template-columns:1fr 1fr}
+      .stat-item{padding:2rem 1rem}
+      .stat-item:nth-child(3){border-right:1px solid var(--b)}
+    }
+  </style>
+</head>
+<body>
+
+<div class="cur-dot" id="cDot"></div>
+<div class="cur-ring" id="cRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="logo">
+    <div class="logo-icon">⚡</div>
+    ZapIA <em>Nexus</em>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#funcionalidades">Funcionalidades</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#precos">Preços</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://app.zapianexus.com.br/login" class="btn-ghost">Entrar</a>
+    <a href="https://app.zapianexus.com.br/register" class="btn-cta">Começar grátis ↗</a>
+  </div>
+  <button class="hamburger" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <canvas id="pcanvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="partner-badge">
+        <div class="badge-dot"></div>
+        ✦ Parceiro Oficial Meta — API Verificada
+      </div>
+      <h1>
+        Seu WhatsApp
+        <span class="tw-wrap"><span class="tw-word tw-blink" id="twEl">vendendo</span></span>
+        <span class="h1-sub">24 horas por dia, 7 dias por semana</span>
+      </h1>
+      <p class="hero-sub">Automatize, venda e atenda com IA integrada. Usando a API oficial da Meta — sem banimentos, sem riscos.</p>
+      <div class="hero-actions">
+        <a href="https://app.zapianexus.com.br/register" class="btn-cta btn-cta-lg">Começar gratuitamente →</a>
+        <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
+      </div>
+      <div class="trust-seals">
+        <span class="seal"><span class="seal-check">✓</span> API Oficial Meta</span>
+        <span class="seal"><span class="seal-check">✓</span> Parceiro Verificado</span>
+        <span class="seal"><span class="seal-check">✓</span> Sem risco de banimento</span>
+        <span class="seal"><span class="seal-check">✓</span> IA integrada</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="bot-wrap">
+        <div class="fbadge fbadge-1">⚡ 3× mais conversões</div>
+        <div class="fbadge fbadge-2">🤖 IA respondendo agora</div>
+        <div class="bot-card">
+          <div class="bot-hdr">
+            <div class="bot-av">Z</div>
+            <div>
+              <div class="bot-name-el">ZapIA Bot</div>
+              <div class="bot-status-el"><span class="sdot"></span>Ativo agora</div>
+            </div>
+            <div class="wdots"><div class="wdot"></div><div class="wdot"></div><div class="wdot"></div></div>
+          </div>
+          <div class="bot-msgs">
+            <div class="msg msg-in">Olá! Qual o preço do plano Pro? 👋</div>
+            <div class="msg msg-out">Oi! 😊 O Pro é R$247/mês com 2.000 mensagens IA e 3 números.<div class="msg-t">agora</div></div>
+            <div class="msg msg-in">Tem como parcelar?</div>
+            <div class="msg msg-out">Sim! Em até 12× no cartão 🎉 Posso te enviar o link agora!<div class="msg-t">agora</div></div>
+            <div class="typing"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-num" data-target="98" data-suffix="%">0%</div><div class="stat-desc">Taxa de entrega</div></div>
+    <div class="stat-item reveal d1"><div class="stat-num" data-target="24" data-suffix="/7">0</div><div class="stat-desc">Disponibilidade</div></div>
+    <div class="stat-item reveal d2"><div class="stat-num" data-target="3" data-suffix="x">0x</div><div class="stat-desc">Mais conversões</div></div>
+    <div class="stat-item reveal d3"><div class="stat-num" data-target="500" data-prefix="+">0</div><div class="stat-desc">Empresas automatizadas</div></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="funcionalidades">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-tag">Funcionalidades</div>
+      <h2 class="sec-title">Tudo que você precisa para<br>escalar no WhatsApp</h2>
+      <p class="sec-sub">De fluxos automatizados a IA que vende por você — tudo em uma plataforma.</p>
+    </div>
+    <div class="features-grid reveal d1">
+      <div class="feat"><span class="feat-icon">🤖</span><div class="feat-title">IA Integrada</div><div class="feat-desc">Gemini, GPT-4 e Claude respondendo seus clientes automaticamente, com contexto e personalidade da sua marca.</div></div>
+      <div class="feat"><span class="feat-icon">🔄</span><div class="feat-title">Fluxos Visuais</div><div class="feat-desc">Editor drag-and-drop sem precisar saber programar. Monte seu atendimento completo em minutos.</div></div>
+      <div class="feat"><span class="feat-icon">📱</span><div class="feat-title">API Oficial Meta</div><div class="feat-desc">Zero risco de banimento. Parceiro verificado pela Meta com todos os recursos oficiais do WhatsApp Business.</div></div>
+      <div class="feat"><span class="feat-icon">📊</span><div class="feat-title">Inbox em Tempo Real</div><div class="feat-desc">Acompanhe todas as conversas ao vivo em um só lugar. Assuma o controle quando necessário.</div></div>
+      <div class="feat"><span class="feat-icon">⚡</span><div class="feat-title">Disparo de Fluxos</div><div class="feat-desc">Inicie conversas automáticas para seus contatos. Campanhas, follow-ups e reativações no piloto.</div></div>
+      <div class="feat"><span class="feat-icon">🏷️</span><div class="feat-title">Etiquetas e CRM</div><div class="feat-desc">Organize seus contatos, crie tags e tenha o histórico completo de cada cliente em um clique.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona" style="background:var(--bg2)">
+  <div class="sec-inner">
+    <div class="how-grid">
+      <div class="reveal">
+        <div class="sec-tag">Como funciona</div>
+        <h2 class="sec-title">Pronto em menos<br>de 5 minutos</h2>
+        <p class="sec-sub">Conecte, configure e comece a vender. Sem código, sem complicação.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="timeline" id="timeline">
+          <div class="tl-line"></div>
+          <div class="tl-fill" id="tlFill"></div>
+          <div class="tl-step"><div class="tl-dot">1</div><div class="tl-num">Passo 01</div><h3 class="tl-title">Conecte seu WhatsApp Business</h3><p class="tl-desc">Em menos de 5 minutos via nossa integração oficial com a Meta. Processo guiado, sem complicação.</p></div>
+          <div class="tl-step"><div class="tl-dot">2</div><div class="tl-num">Passo 02</div><h3 class="tl-title">Monte seu fluxo de atendimento</h3><p class="tl-desc">Editor visual simples, sem código. Arraste, conecte e publique seu fluxo em minutos.</p></div>
+          <div class="tl-step"><div class="tl-dot">3</div><div class="tl-num">Passo 03</div><h3 class="tl-title">Adicione IA ao atendimento</h3><p class="tl-desc">Configure o Bloco IA para responder dúvidas, qualificar leads e vender automaticamente.</p></div>
+          <div class="tl-step"><div class="tl-dot">4</div><div class="tl-num">Passo 04</div><h3 class="tl-title">Venda no piloto automático</h3><p class="tl-desc">Receba mensagens, responda com IA e feche vendas 24 horas por dia — mesmo enquanto você dorme.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="precos">
+  <div class="sec-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="sec-tag" style="justify-content:center">Planos</div>
+      <h2 class="sec-title">Escolha seu plano</h2>
+      <p class="sec-sub" style="margin:0 auto">Comece com o que você precisa. Faça upgrade quando crescer.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal d1">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price"><sup>R$</sup>197</div>
+        <div class="plan-period">/mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>1 número WhatsApp</li><li>500 mensagens IA/mês</li><li>Fluxos ilimitados</li>
+          <li>Contatos ilimitados</li><li>Inbox em tempo real</li><li>Suporte por chat</li>
+        </ul>
+        <a href="https://app.zapianexus.com.br/register" class="plan-btn plan-btn-ol">Começar agora</a>
+      </div>
+      <div class="price-card hot reveal d2">
+        <div class="hot-badge">★ Mais popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>R$</sup>247</div>
+        <div class="plan-period">/mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>3 números WhatsApp</li><li>2.000 mensagens IA/mês</li><li>Tudo do Starter</li>
+          <li>Analytics completo</li><li>Webhooks e integrações</li><li>Suporte prioritário</li>
+        </ul>
+        <a href="https://app.zapianexus.com.br/register" class="plan-btn plan-btn-solid">Começar agora</a>
+      </div>
+      <div class="price-card reveal d3">
+        <div class="plan-name">Business</div>
+        <div class="plan-price"><sup>R$</sup>597</div>
+        <div class="plan-period">/mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>5 números WhatsApp</li><li>10.000 mensagens IA/mês</li><li>Tudo do Pro</li>
+          <li>API REST completa</li><li>White-label disponível</li><li>Gerente de conta dedicado</li>
+        </ul>
+        <a href="https://app.zapianexus.com.br/register" class="plan-btn plan-btn-ol">Começar agora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--bg2)">
+  <div class="sec-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="sec-tag" style="justify-content:center">Depoimentos</div>
+      <h2 class="sec-title">Quem usa, recomenda</h2>
+      <p class="sec-sub" style="margin:0 auto">Mais de 500 empresas já automatizaram seu WhatsApp com o ZapIA Nexus.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal d1">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"Automatizei meu atendimento em 1 dia. Hoje vendo 3× mais sem contratar ninguém. A IA responde melhor do que eu esperava."</p>
+        <div class="test-author"><div class="test-av" style="background:linear-gradient(135deg,#00ff88,#00cc6a)">C</div><div><div class="test-name">Carlos M.</div><div class="test-role">Loja de Roupas, SP</div></div></div>
+      </div>
+      <div class="test-card reveal d2">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"A IA responde meus clientes às 3 da manhã. Nunca perco uma venda por falta de resposta. Melhor investimento que fiz."</p>
+        <div class="test-author"><div class="test-av" style="background:linear-gradient(135deg,#00c6ff,#0072ff)">A</div><div><div class="test-name">Ana Paula R.</div><div class="test-role">Estética, MG</div></div></div>
+      </div>
+      <div class="test-card reveal d3">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"Conectei em 5 minutos e o fluxo já estava funcionando. Impressionante. Recomendo para qualquer negócio que usa WhatsApp."</p>
+        <div class="test-author"><div class="test-av" style="background:linear-gradient(135deg,#ff6b6b,#ee5a24)">R</div><div><div class="test-name">Ricardo T.</div><div class="test-role">Agência Digital, RJ</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="sec-tag" style="justify-content:center;margin-bottom:1.5rem">Comece agora</div>
+    <h2 class="cta-title">Automatize seu WhatsApp<br><span style="color:var(--g)">hoje mesmo</span></h2>
+    <p class="cta-sub">Junte-se a mais de 500 empresas que já vendem no piloto automático.</p>
+    <a href="https://app.zapianexus.com.br/register" class="btn-cta btn-cta-lg">Começar gratuitamente →</a>
+    <p class="cta-note">Sem necessidade de cartão de crédito para começar • Suporte em português</p>
+  </div>
+</section>
+
+<!-- META BADGE -->
+<div class="meta-wrap reveal">
+  <div class="meta-badge">
+    <div class="meta-icon">f</div>
+    <div class="meta-txt">
+      <div class="meta-title">Meta Business Partner</div>
+      <div class="meta-sub">API Oficial do WhatsApp Business</div>
+    </div>
+    <div class="meta-verified">✓ Verificado</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2025 ZapIA Nexus. Todos os direitos reservados.</div>
+    <ul class="footer-links">
+      <li><a href="/privacidade.html">Privacidade</a></li>
+      <li><a href="/termos.html">Termos de uso</a></li>
+      <li><a href="https://app.zapianexus.com.br/login">Entrar</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cDot = document.getElementById('cDot');
+const cRing = document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.left=mx+'px';cDot.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cDot.style.transform='translate(-50%,-50%) scale(2.2)';cRing.style.width='48px';cRing.style.height='48px';cRing.style.opacity='.25'});
+  el.addEventListener('mouseleave',()=>{cDot.style.transform='translate(-50%,-50%) scale(1)';cRing.style.width='30px';cRing.style.height='30px';cRing.style.opacity='.45'});
+});
+
+// PARTICLES
+const canvas=document.getElementById('pcanvas');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
+window.addEventListener('resize',resize);resize();
+
+class P{
+  constructor(){this.reset()}
+  reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.45;this.vy=(Math.random()-.5)*.45;this.r=Math.random()*2+.5;this.a=Math.random()*.5+.15}
+  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,255,136,${this.a})`;ctx.fill()}
+}
+for(let i=0;i<65;i++)particles.push(new P());
+
+function drawLines(){
+  const d=130;
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<d){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(0,255,136,${(1-dist/d)*.13})`;ctx.lineWidth=.7;ctx.stroke()}
+    }
+  }
+}
+(function loop(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{p.update();p.draw()});drawLines();requestAnimationFrame(loop)})();
+
+// TYPEWRITER
+const words=['vendendo','atendendo','convertendo'];
+let wi=0,ci=0,del=false;
+const twEl=document.getElementById('twEl');
+function type(){
+  const w=words[wi];
+  if(del){ci--;twEl.textContent=w.slice(0,ci);if(ci===0){del=false;wi=(wi+1)%words.length;setTimeout(type,420);return}setTimeout(type,55)}
+  else{ci++;twEl.textContent=w.slice(0,ci);twEl.classList.remove('tw-blink');if(ci===w.length){twEl.classList.add('tw-blink');del=true;setTimeout(type,2200);return}setTimeout(type,95)}
+}
+setTimeout(type,900);
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// COUNT UP
+const cobs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=parseInt(el.dataset.target),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    const start=performance.now(),dur=2000;
+    (function upd(now){const t=Math.min((now-start)/dur,1),ease=1-Math.pow(1-t,4);el.textContent=pre+Math.round(ease*target)+suf;if(t<1)requestAnimationFrame(upd);})( performance.now());
+    el.closest('.stat-item').classList.add('counted');
+    cobs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-num').forEach(el=>cobs.observe(el));
+
+// TIMELINE
+const tlObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    document.getElementById('tlFill').style.height='100%';
+    document.querySelectorAll('.tl-step').forEach((s,i)=>setTimeout(()=>s.classList.add('active'),i*380));
+    tlObs.unobserve(e.target);
+  });
+},{threshold:.2});
+const tl=document.getElementById('timeline');
+if(tl)tlObs.observe(tl);
+
+// NAV SCROLL
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+</script>
+</body>
+</html>
