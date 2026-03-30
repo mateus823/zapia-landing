@@ -157,8 +157,8 @@
     .tl-desc{font-size:.875rem;color:var(--td);line-height:1.65;font-weight:300;max-width:420px}
 
     /* PRICING */
-    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;align-items:start}
-    .price-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;align-items:stretch}
+    .price-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;display:flex;flex-direction:column}
     .price-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
     .price-card.hot{border-color:var(--g);background:var(--s2);transform:scale(1.03);box-shadow:0 0 0 1px var(--g),0 0 60px rgba(0,255,136,.1),0 24px 60px rgba(0,0,0,.4)}
     .price-card.hot:hover{transform:scale(1.03) translateY(-5px)}
@@ -170,12 +170,14 @@
     .plan-price sup{font-size:1.1rem;vertical-align:top;margin-top:.4rem;margin-right:.1rem}
     .plan-period{font-size:.85rem;color:var(--m);font-weight:400;margin-bottom:1.5rem}
     .plan-divider{height:1px;background:var(--b);margin:1.5rem 0}
-    .plan-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem;flex:1}
     .plan-features li{display:flex;align-items:flex-start;gap:.55rem;font-size:.875rem;color:var(--td);line-height:1.4}
     .plan-features li::before{content:'✓';color:var(--g);font-size:.78rem;flex-shrink:0;margin-top:.1rem}
     .plan-features li.no-feat{opacity:.45}
     .plan-features li.no-feat::before{content:'✗';color:var(--m)}
-    .plan-btn{display:block;width:100%;text-align:center;text-decoration:none;padding:.85rem;border-radius:12px;font-weight:600;font-size:.88rem;font-family:'Space Grotesk',sans-serif;transition:all .25s;cursor:none;border:none}
+    .plan-features li.feat-highlight{color:var(--t);font-weight:500}
+    .plan-feat-sep{height:1px;background:var(--b);margin:.4rem 0}
+    .plan-btn{display:block;width:100%;text-align:center;text-decoration:none;padding:.85rem;border-radius:12px;font-weight:600;font-size:.88rem;font-family:'Space Grotesk',sans-serif;transition:all .25s;cursor:none;border:none;margin-top:auto}
     .plan-btn-ol{border:1px solid var(--b);color:var(--t);background:transparent}
     .plan-btn-ol:hover{border-color:var(--g);color:var(--g)}
     .plan-btn-solid{background:var(--g);color:#000}
@@ -222,7 +224,7 @@
       .features-grid{grid-template-columns:repeat(2,1fr)}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
       .stat-item:nth-child(2){border-right:none}
-      .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:860px;margin-inline:auto}
+      .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:860px;margin-inline:auto;align-items:start}
       .price-card.hot{transform:scale(1)}
       .price-card.hot:hover{transform:translateY(-5px)}
       .test-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
@@ -395,9 +397,17 @@
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>1 número WhatsApp</li><li>3 fluxos ativos</li><li>Até 1.000 contatos</li>
-          <li>1.000 conversas/mês</li><li>Inbox em tempo real</li><li>Suporte por email</li>
-          <li class="no-feat">Sem IA</li><li class="no-feat">Sem Analytics</li><li class="no-feat">Sem Webhooks</li>
+          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
+          <div class="plan-feat-sep"></div>
+          <li>1 número WhatsApp</li>
+          <li>3 fluxos ativos</li>
+          <li>Até 1.000 contatos</li>
+          <li>1.000 conversas/mês</li>
+          <li>Inbox em tempo real</li>
+          <li>Suporte por email</li>
+          <li class="no-feat">Sem IA</li>
+          <li class="no-feat">Sem Analytics</li>
+          <li class="no-feat">Sem Webhooks</li>
         </ul>
         <a href="https://pay.cakto.com.br/qircj9r" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
       </div>
@@ -408,9 +418,16 @@
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>1 número WhatsApp</li><li>Fluxos ilimitados</li><li>Contatos ilimitados</li>
-          <li>Conversas ilimitadas</li><li>500 mensagens IA/mês</li><li>Analytics completo</li>
-          <li>Webhooks e integrações</li><li>Suporte por chat</li>
+          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
+          <div class="plan-feat-sep"></div>
+          <li>1 número WhatsApp</li>
+          <li>Fluxos ilimitados</li>
+          <li>Contatos ilimitados</li>
+          <li>Conversas ilimitadas</li>
+          <li>500 mensagens IA/mês</li>
+          <li>Analytics completo</li>
+          <li>Webhooks e integrações</li>
+          <li>Suporte por chat</li>
         </ul>
         <a href="https://pay.cakto.com.br/9fzkw6q_818781" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
       </div>
@@ -420,8 +437,13 @@
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>3 números WhatsApp</li><li>2.000 mensagens IA/mês</li><li>Tudo do Starter</li>
-          <li>Analytics avançado</li><li>Suporte prioritário</li>
+          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
+          <div class="plan-feat-sep"></div>
+          <li>3 números WhatsApp</li>
+          <li>Tudo do Starter</li>
+          <li>2.000 mensagens IA/mês</li>
+          <li>Analytics avançado</li>
+          <li>Suporte prioritário</li>
         </ul>
         <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
       </div>
@@ -431,8 +453,14 @@
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>5 números WhatsApp</li><li>10.000 mensagens IA/mês</li><li>Tudo do Pro</li>
-          <li>API REST completa</li><li>White-label disponível</li><li>Gerente de conta dedicado</li>
+          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
+          <div class="plan-feat-sep"></div>
+          <li>5 números WhatsApp</li>
+          <li>Tudo do Pro</li>
+          <li>10.000 mensagens IA/mês</li>
+          <li>API REST completa</li>
+          <li>White-label disponível</li>
+          <li>Gerente de conta dedicado</li>
         </ul>
         <a href="https://pay.cakto.com.br/3cmvi4e" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
       </div>
