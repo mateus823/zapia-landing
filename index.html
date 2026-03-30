@@ -157,7 +157,7 @@
     .tl-desc{font-size:.875rem;color:var(--td);line-height:1.65;font-weight:300;max-width:420px}
 
     /* PRICING */
-    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;align-items:start}
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;align-items:start}
     .price-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
     .price-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
     .price-card.hot{border-color:var(--g);background:var(--s2);transform:scale(1.03);box-shadow:0 0 0 1px var(--g),0 0 60px rgba(0,255,136,.1),0 24px 60px rgba(0,0,0,.4)}
@@ -173,6 +173,8 @@
     .plan-features{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.8rem}
     .plan-features li{display:flex;align-items:flex-start;gap:.55rem;font-size:.875rem;color:var(--td);line-height:1.4}
     .plan-features li::before{content:'✓';color:var(--g);font-size:.78rem;flex-shrink:0;margin-top:.1rem}
+    .plan-features li.no-feat{opacity:.45}
+    .plan-features li.no-feat::before{content:'✗';color:var(--m)}
     .plan-btn{display:block;width:100%;text-align:center;text-decoration:none;padding:.85rem;border-radius:12px;font-weight:600;font-size:.88rem;font-family:'Space Grotesk',sans-serif;transition:all .25s;cursor:none;border:none}
     .plan-btn-ol{border:1px solid var(--b);color:var(--t);background:transparent}
     .plan-btn-ol:hover{border-color:var(--g);color:var(--g)}
@@ -220,7 +222,7 @@
       .features-grid{grid-template-columns:repeat(2,1fr)}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
       .stat-item:nth-child(2){border-right:none}
-      .pricing-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+      .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:860px;margin-inline:auto}
       .price-card.hot{transform:scale(1)}
       .price-card.hot:hover{transform:translateY(-5px)}
       .test-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
@@ -388,29 +390,42 @@
     </div>
     <div class="pricing-grid">
       <div class="price-card reveal d1">
+        <div class="plan-name">Básico</div>
+        <div class="plan-price"><sup>R$</sup>97</div>
+        <div class="plan-period">/mês</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>1 número WhatsApp</li><li>3 fluxos ativos</li><li>Até 1.000 contatos</li>
+          <li>1.000 conversas/mês</li><li>Inbox em tempo real</li><li>Suporte por email</li>
+          <li class="no-feat">Sem IA</li><li class="no-feat">Sem Analytics</li><li class="no-feat">Sem Webhooks</li>
+        </ul>
+        <a href="https://pay.cakto.com.br/qircj9r" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
+      </div>
+      <div class="price-card hot reveal d2">
+        <div class="hot-badge">★ Mais popular</div>
         <div class="plan-name">Starter</div>
         <div class="plan-price"><sup>R$</sup>197</div>
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
-          <li>1 número WhatsApp</li><li>500 mensagens IA/mês</li><li>Fluxos ilimitados</li>
-          <li>Contatos ilimitados</li><li>Inbox em tempo real</li><li>Suporte por chat</li>
+          <li>1 número WhatsApp</li><li>Fluxos ilimitados</li><li>Contatos ilimitados</li>
+          <li>Conversas ilimitadas</li><li>500 mensagens IA/mês</li><li>Analytics completo</li>
+          <li>Webhooks e integrações</li><li>Suporte por chat</li>
         </ul>
-        <a href="https://pay.cakto.com.br/9fzkw6q_818781" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
+        <a href="https://pay.cakto.com.br/9fzkw6q_818781" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
       </div>
-      <div class="price-card hot reveal d2">
-        <div class="hot-badge">★ Mais popular</div>
+      <div class="price-card reveal d3">
         <div class="plan-name">Pro</div>
         <div class="plan-price"><sup>R$</sup>247</div>
         <div class="plan-period">/mês</div>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li>3 números WhatsApp</li><li>2.000 mensagens IA/mês</li><li>Tudo do Starter</li>
-          <li>Analytics completo</li><li>Webhooks e integrações</li><li>Suporte prioritário</li>
+          <li>Analytics avançado</li><li>Suporte prioritário</li>
         </ul>
-        <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
+        <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
       </div>
-      <div class="price-card reveal d3">
+      <div class="price-card reveal d4">
         <div class="plan-name">Business</div>
         <div class="plan-price"><sup>R$</sup>597</div>
         <div class="plan-period">/mês</div>
