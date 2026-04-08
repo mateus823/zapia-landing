@@ -156,8 +156,30 @@
     .tl-title{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:.45rem}
     .tl-desc{font-size:.875rem;color:var(--td);line-height:1.65;font-weight:300;max-width:420px}
 
+    /* HERO PILLS */
+    .hero-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;animation:fadeUp .7s .5s both}
+    .hero-pill{display:inline-flex;align-items:center;gap:.3rem;background:var(--gd);border:1px solid var(--bb);border-radius:100px;padding:.3rem .85rem;font-size:.78rem;font-weight:500;color:var(--g)}
+
+    /* COMPARISON TABLE */
+    .comp-section{padding:5rem 5%;background:var(--bg2)}
+    .comp-inner{max-width:820px;margin:0 auto}
+    .comp-table{width:100%;border-collapse:collapse;margin-top:2.5rem}
+    .comp-table th{padding:.9rem 1.2rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    .comp-table th:first-child{text-align:left;color:var(--m)}
+    .comp-table th.th-them{color:#666;background:rgba(255,255,255,.02);border-radius:12px 12px 0 0}
+    .comp-table th.th-us{color:#000;background:var(--g);border-radius:12px 12px 0 0}
+    .comp-table td{padding:.85rem 1.2rem;font-size:.88rem;border-bottom:1px solid var(--b);text-align:center}
+    .comp-table td:first-child{text-align:left;color:var(--td);font-weight:400}
+    .comp-table td.td-them{color:#555;background:rgba(255,255,255,.015)}
+    .comp-table td.td-us{color:#000;background:rgba(0,255,136,.1);font-weight:600;color:var(--g)}
+    .comp-table tr:last-child td{border-bottom:none}
+    .comp-table tr:hover td{background:rgba(255,255,255,.02)}
+    .comp-table tr:hover td.td-us{background:rgba(0,255,136,.15)}
+    .comp-yes{color:var(--g)}.comp-no{color:#555}
+    @media(max-width:640px){.comp-table th,.comp-table td{padding:.65rem .7rem;font-size:.8rem}}
+
     /* PRICING */
-    .pricing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;margin-top:3.5rem;align-items:stretch}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3.5rem;align-items:stretch;max-width:880px;margin-inline:auto}
     .price-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden;display:flex;flex-direction:column}
     .price-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
     .price-card.hot{border-color:var(--g);background:var(--s2);transform:scale(1.03);box-shadow:0 0 0 1px var(--g),0 0 60px rgba(0,255,136,.1),0 24px 60px rgba(0,0,0,.4)}
@@ -230,7 +252,7 @@
       .features-grid{grid-template-columns:repeat(2,1fr)}
       .stats-grid{grid-template-columns:repeat(2,1fr)}
       .stat-item:nth-child(2){border-right:none}
-      .pricing-grid{grid-template-columns:repeat(2,1fr);max-width:920px;margin-inline:auto;align-items:start}
+      .pricing-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto;align-items:start}
       .price-card.hot{transform:scale(1)}
       .price-card.hot:hover{transform:translateY(-5px)}
       .test-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
@@ -299,6 +321,12 @@
         <span class="h1-sub">24 horas por dia, 7 dias por semana</span>
       </h1>
       <p class="hero-sub">Automatize, venda e atenda com IA integrada. Usando a API oficial da Meta — sem banimentos, sem riscos.</p>
+      <div class="hero-pills">
+        <span class="hero-pill">✓ IA incluída</span>
+        <span class="hero-pill">✓ Contatos ilimitados</span>
+        <span class="hero-pill">✓ API Oficial Meta</span>
+        <span class="hero-pill">✓ Suporte em português</span>
+      </div>
       <div class="hero-actions">
         <a href="https://app.zapcronos.com.br/register" class="btn-cta btn-cta-lg">Começar gratuitamente →</a>
         <a href="#como-funciona" class="btn-ghost">Ver como funciona</a>
@@ -341,7 +369,7 @@
   <div class="stats-grid">
     <div class="stat-item reveal"><div class="stat-num" data-target="98" data-suffix="%">0%</div><div class="stat-desc">Taxa de entrega</div></div>
     <div class="stat-item reveal d1"><div class="stat-num" data-target="24" data-suffix="/7">0</div><div class="stat-desc">Disponibilidade</div></div>
-    <div class="stat-item reveal d2"><div class="stat-num" data-target="3" data-suffix="x">0x</div><div class="stat-desc">Mais conversões</div></div>
+    <div class="stat-item reveal d2"><div class="stat-num" data-target="5" data-suffix="x">0x</div><div class="stat-desc">Mais barato que o Manychat</div></div>
     <div class="stat-item reveal d3"><div class="stat-num" data-target="500" data-prefix="+">0</div><div class="stat-desc">Empresas automatizadas</div></div>
   </div>
 </div>
@@ -388,6 +416,60 @@
   </div>
 </section>
 
+<!-- COMPARISON -->
+<section class="comp-section">
+  <div class="comp-inner">
+    <div class="reveal" style="text-align:center">
+      <div class="sec-tag" style="justify-content:center">Comparativo</div>
+      <h2 class="sec-title">Chega de pagar caro<br>por crescer</h2>
+      <p class="sec-sub" style="margin:0 auto">No Zap Cronos você não é punido por ter mais clientes.</p>
+    </div>
+    <div class="reveal d1">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="th-them">Manychat</th>
+            <th class="th-us">Zap Cronos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IA incluída no plano</td>
+            <td class="td-them"><span class="comp-no">❌</span> +$29/mês extra</td>
+            <td class="td-us"><span class="comp-yes">✅</span> Incluída</td>
+          </tr>
+          <tr>
+            <td>Contatos ilimitados</td>
+            <td class="td-them"><span class="comp-no">❌</span> Cobra por contato</td>
+            <td class="td-us"><span class="comp-yes">✅</span> Ilimitado</td>
+          </tr>
+          <tr>
+            <td>Preço base</td>
+            <td class="td-them"><span class="comp-no">R$800+/mês</span></td>
+            <td class="td-us">A partir de R$97</td>
+          </tr>
+          <tr>
+            <td>Suporte em português</td>
+            <td class="td-them"><span class="comp-no">❌</span></td>
+            <td class="td-us"><span class="comp-yes">✅</span></td>
+          </tr>
+          <tr>
+            <td>API Oficial Meta</td>
+            <td class="td-them"><span class="comp-yes" style="color:#888">✅</span></td>
+            <td class="td-us"><span class="comp-yes">✅</span></td>
+          </tr>
+          <tr>
+            <td>Automação WhatsApp nativa</td>
+            <td class="td-them"><span class="comp-no">❌</span> Foco Instagram</td>
+            <td class="td-us"><span class="comp-yes">✅</span> Foco WhatsApp</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section id="precos">
   <div class="sec-inner">
@@ -405,39 +487,20 @@
         <ul class="plan-features">
           <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
           <div class="plan-feat-sep"></div>
+          <li>✓ IA incluída</li>
+          <li>✓ Contatos ilimitados</li>
+          <li>✓ Suporte em português</li>
+          <div class="plan-feat-sep"></div>
           <li>1 número WhatsApp</li>
           <li>3 fluxos ativos</li>
-          <li>Até 1.000 contatos</li>
+          <li>500 mensagens IA/mês</li>
           <li>1.000 conversas/mês</li>
           <li>Inbox em tempo real</li>
-          <li>Suporte por email</li>
-          <li class="no-feat">Sem IA</li>
-          <li class="no-feat">Sem Analytics</li>
-          <li class="no-feat">Sem Webhooks</li>
         </ul>
         <a href="https://pay.cakto.com.br/qircj9r" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
       </div>
       <div class="price-card hot reveal d2">
         <div class="hot-badge">★ Mais popular</div>
-        <div class="plan-name">Starter</div>
-        <div class="plan-price"><sup>R$</sup>197</div>
-        <div class="plan-period">/mês</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
-          <div class="plan-feat-sep"></div>
-          <li>1 número WhatsApp</li>
-          <li>Fluxos ilimitados</li>
-          <li>Contatos ilimitados</li>
-          <li>Conversas ilimitadas</li>
-          <li>1.500 mensagens IA/mês</li>
-          <li>Analytics completo</li>
-          <li>Webhooks e integrações</li>
-          <li>Suporte por chat</li>
-        </ul>
-        <a href="https://pay.cakto.com.br/9fzkw6q_818781" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
-      </div>
-      <div class="price-card reveal d3">
         <div class="plan-name">Pro</div>
         <div class="plan-price"><sup>R$</sup>247</div>
         <div class="plan-period">/mês</div>
@@ -445,15 +508,21 @@
         <ul class="plan-features">
           <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
           <div class="plan-feat-sep"></div>
+          <li>✓ IA incluída</li>
+          <li>✓ Contatos ilimitados</li>
+          <li>✓ Suporte em português</li>
+          <div class="plan-feat-sep"></div>
           <li>3 números WhatsApp</li>
-          <li>Tudo do Starter</li>
+          <li>Fluxos ilimitados</li>
           <li>5.000 mensagens IA/mês</li>
+          <li>Conversas ilimitadas</li>
           <li>Analytics avançado</li>
+          <li>Webhooks e integrações</li>
           <li>Suporte prioritário</li>
         </ul>
-        <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
+        <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
       </div>
-      <div class="price-card reveal d4">
+      <div class="price-card reveal d3">
         <div class="plan-name">Business</div>
         <div class="plan-price"><sup>R$</sup>597</div>
         <div class="plan-period">/mês</div>
@@ -461,38 +530,19 @@
         <ul class="plan-features">
           <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
           <div class="plan-feat-sep"></div>
+          <li>✓ IA incluída</li>
+          <li>✓ Contatos ilimitados</li>
+          <li>✓ Suporte em português</li>
+          <div class="plan-feat-sep"></div>
           <li>5 números WhatsApp</li>
-          <li>Tudo do Pro</li>
+          <li>Fluxos ilimitados</li>
           <li>15.000 mensagens IA/mês</li>
+          <li>Conversas ilimitadas</li>
           <li>API REST completa</li>
+          <li>Analytics avançado</li>
           <li>Gerente de conta dedicado</li>
         </ul>
         <a href="https://pay.cakto.com.br/3cmvi4e" target="_blank" class="plan-btn plan-btn-ol">Começar agora</a>
-      </div>
-      <div class="price-card premium reveal d5">
-        <div class="agency-badge">🏆 Meta Tech Provider</div>
-        <div class="plan-name" style="color:#d4a017">Agency</div>
-        <div class="plan-price"><sup>R$</sup>2.997</div>
-        <div class="plan-period">/mês</div>
-        <div class="plan-divider"></div>
-        <ul class="plan-features">
-          <li class="feat-highlight" title="Continue atendendo no app WhatsApp Business normalmente enquanto a automação funciona em paralelo">API Oficial Meta + Coexistência ⓘ</li>
-          <div class="plan-feat-sep"></div>
-          <li>15 números WhatsApp</li>
-          <li>50.000 mensagens IA/mês</li>
-          <li>Fluxos ilimitados</li>
-          <li>Contatos ilimitados</li>
-          <li>Conversas ilimitadas</li>
-          <li>API REST completa</li>
-          <li>Webhooks ilimitados</li>
-          <li>Suporte SLA 2h</li>
-          <li>Gerente de conta dedicado</li>
-          <li>Onboarding personalizado (2h)</li>
-          <li>Documentação técnica avançada</li>
-          <li>Acesso a recursos beta</li>
-          <li>Meta Tech Provider oficial</li>
-        </ul>
-        <a href="https://pay.cakto.com.br/bt7vrvn" target="_blank" class="plan-btn plan-btn-agency">Falar com especialista</a>
       </div>
     </div>
   </div>
