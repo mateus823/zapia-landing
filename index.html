@@ -231,13 +231,7 @@
     .cta-note{font-size:.78rem;color:var(--m);margin-top:1rem}
 
     /* META BADGE */
-    .meta-wrap{display:flex;justify-content:center;padding:0 5% 4rem}
-    .meta-badge{display:inline-flex;align-items:center;gap:.75rem;background:var(--s1);border:1px solid var(--b);border-radius:14px;padding:.9rem 1.5rem;transition:border-color .3s,box-shadow .3s}
-    .meta-badge:hover{border-color:var(--bb);box-shadow:0 0 30px rgba(0,255,136,.06)}
-    .meta-icon{width:28px;height:28px;background:linear-gradient(135deg,#0082fb,#0052cc);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;color:#fff;font-family:serif}
-    .meta-txt .meta-title{font-size:.82rem;font-weight:600;color:var(--t)}
-    .meta-txt .meta-sub{font-size:.72rem;color:var(--m)}
-    .meta-verified{margin-left:auto;color:var(--g);font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.3rem}
+    @keyframes shimmer{0%{left:-100%}100%{left:200%}}
 
     /* FOOTER */
     footer{padding:2.5rem 5%;border-top:1px solid var(--b)}
@@ -604,14 +598,25 @@
 </section>
 
 <!-- META BADGE -->
-<div class="meta-wrap reveal">
-  <div class="meta-badge">
-    <div class="meta-icon">f</div>
-    <div class="meta-txt">
-      <div class="meta-title">Meta Business Partner</div>
-      <div class="meta-sub">API Oficial do WhatsApp Business</div>
+<div style="display:flex;justify-content:center;padding:0 5% 4rem">
+  <div style="display:flex;justify-content:center;align-items:center;gap:40px;padding:32px 48px;margin:0 auto 60px auto;max-width:800px;background:linear-gradient(135deg,#0d1117 0%,#111827 100%);border:1px solid #00FF8830;border-radius:20px;position:relative;overflow:hidden;flex-wrap:wrap">
+    <div style="position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,#00FF8808,transparent);animation:shimmer 3s infinite"></div>
+    <div style="width:56px;height:56px;background:#1877f2;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:28px;font-weight:900;color:white;font-family:serif">f</div>
+    <div style="width:1px;height:48px;background:#ffffff15"></div>
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="color:#fff;font-size:18px;font-weight:700;letter-spacing:0.3px">Meta Business Partner</div>
+      <div style="color:#6b7280;font-size:13px">API Oficial do WhatsApp Business</div>
     </div>
-    <div class="meta-verified">✓ Verificado</div>
+    <div style="width:1px;height:48px;background:#ffffff15"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:40px;height:40px;border-radius:50%;background:#00FF8820;border:2px solid #00FF88;display:flex;align-items:center;justify-content:center;font-size:20px">✓</div>
+      <div style="color:#00FF88;font-size:12px;font-weight:600">Verificado</div>
+    </div>
+    <div style="width:1px;height:48px;background:#ffffff15"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:40px;height:40px;border-radius:50%;background:#1877f220;border:2px solid #1877f2;display:flex;align-items:center;justify-content:center;font-size:18px">🛡️</div>
+      <div style="color:#1877f2;font-size:12px;font-weight:600">Tech Provider</div>
+    </div>
   </div>
 </div>
 
