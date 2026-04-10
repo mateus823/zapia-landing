@@ -211,16 +211,16 @@
     .plan-btn-agency{background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;font-weight:700}
     .plan-btn-agency:hover{box-shadow:0 8px 30px rgba(255,180,0,.4);transform:translateY(-1px)}
 
-    /* TESTIMONIALS */
-    .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-    .test-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;transition:transform .3s,box-shadow .3s,border-color .3s}
-    .test-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.4);border-color:var(--bb)}
-    .test-stars{color:var(--g);font-size:.78rem;letter-spacing:.1em;margin-bottom:.9rem}
-    .test-quote{font-size:.88rem;line-height:1.7;color:var(--td);font-weight:300;margin-bottom:1.4rem;font-style:italic}
-    .test-author{display:flex;align-items:center;gap:.75rem}
-    .test-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;color:#000;flex-shrink:0}
-    .test-name{font-size:.875rem;font-weight:600}
-    .test-role{font-size:.73rem;color:var(--m)}
+    /* PHONE ANIMATION */
+    @keyframes pulse-red{0%,100%{box-shadow:0 0 16px #ef444466}50%{box-shadow:0 0 32px #ef4444cc}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .phone-pulse{animation:pulse-red .5s infinite}
+    .ban-section{max-width:1100px;margin:0 auto;padding:48px;display:flex;gap:48px;align-items:center;background:#0d0d0d;border-radius:20px}
+    .ban-left{flex:0 0 auto;display:flex;flex-direction:column;align-items:center}
+    .ban-right{flex:1}
+    .ban-benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .ban-card{background:#0d1117;border:1px solid rgba(0,255,136,.12);border-radius:12px;padding:20px;text-align:center;cursor:default;transition:border-color .2s,transform .2s}
+    .ban-card:hover{border-color:#00FF88;transform:translateY(-2px)}
 
     /* CTA */
     .cta-section{padding:7rem 5%;position:relative;overflow:hidden}
@@ -256,8 +256,7 @@
       .pricing-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto;align-items:start}
       .price-card.hot{transform:scale(1)}
       .price-card.hot:hover{transform:translateY(-5px)}
-      .test-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto}
-      .how-grid{grid-template-columns:1fr}
+.how-grid{grid-template-columns:1fr}
     }
     @media(max-width:768px){
       body{cursor:auto}
@@ -270,6 +269,7 @@
       .features-grid{grid-template-columns:1fr}
       section{padding:5rem 5%}
       .timeline{padding-left:2.5rem}
+      .ban-section{flex-direction:column;padding:32px 20px;gap:32px}
     }
     @media(max-width:480px){
       .stats-grid{grid-template-columns:1fr 1fr}
@@ -549,29 +549,38 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section style="background:var(--bg2)">
+<!-- PHONE ANIMATION + META BENEFITS -->
+<section style="background:var(--bg2);padding:7rem 5%">
   <div class="sec-inner">
-    <div class="reveal" style="text-align:center">
-      <div class="sec-tag" style="justify-content:center">Depoimentos</div>
-      <h2 class="sec-title">Quem usa, recomenda</h2>
-      <p class="sec-sub" style="margin:0 auto">Mais de 500 empresas já automatizaram seu WhatsApp com o Zap Cronos.</p>
-    </div>
-    <div class="test-grid">
-      <div class="test-card reveal d1">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-quote">"Automatizei meu atendimento em 1 dia. Hoje vendo 3× mais sem contratar ninguém. A IA responde melhor do que eu esperava."</p>
-        <div class="test-author"><img src="carlos.jpg" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0"><div><div class="test-name">Carlos M.</div><div class="test-role">Loja de Roupas, SP</div></div></div>
+    <div class="ban-section">
+      <!-- Coluna esquerda: animação do celular -->
+      <div class="ban-left">
+        <p style="color:#ef4444;font-size:.85rem;font-weight:600;margin-bottom:16px;text-align:center">⚠️ O que acontece sem API Oficial</p>
+        <div id="phoneMock" style="width:260px;height:480px;border-radius:36px;border:3px solid #2d2d2d;background:#1a1a2e;overflow:hidden;margin:0 auto;position:relative;transition:border-color .3s,box-shadow .3s,opacity .5s;display:flex;flex-direction:column">
+          <!-- Status bar -->
+          <div style="background:#075e54;padding:8px 16px;display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <div style="width:32px;height:32px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="color:#fff;font-size:10px;font-weight:700">ME</span>
+            </div>
+            <div>
+              <p style="color:#fff;font-weight:700;font-size:13px;margin:0;line-height:1.2">Minha Empresa</p>
+              <p style="color:#a7d9a2;font-size:11px;margin:0">online</p>
+            </div>
+          </div>
+          <!-- Área de conteúdo das fases -->
+          <div id="phoneContent" style="flex:1;overflow:hidden;background:#ece5dd;display:flex;flex-direction:column;padding:8px 4px"></div>
+        </div>
       </div>
-      <div class="test-card reveal d2">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-quote">"A IA responde meus clientes às 3 da manhã. Nunca perco uma venda por falta de resposta. Melhor investimento que fiz."</p>
-        <div class="test-author"><img src="ana.jpg" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0"><div><div class="test-name">Ana Paula R.</div><div class="test-role">Estética, MG</div></div></div>
-      </div>
-      <div class="test-card reveal d3">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-quote">"Conectei em 5 minutos e o fluxo já estava funcionando. Impressionante. Recomendo para qualquer negócio que usa WhatsApp."</p>
-        <div class="test-author"><img src="ricardo.jpg" style="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0"><div><div class="test-name">Ricardo T.</div><div class="test-role">Agência Digital, RJ</div></div></div>
+      <!-- Coluna direita: benefícios -->
+      <div class="ban-right">
+        <h2 style="color:#fff;font-size:1.3rem;font-weight:700;margin:0 0 8px 0;font-family:'Space Grotesk',sans-serif">🛡️ Por que API Oficial da Meta?</h2>
+        <p style="color:#6b7280;font-size:.88rem;margin-bottom:0">Conexão direta, segura e certificada. Sem risco de banimento.</p>
+        <div class="ban-benefits-grid">
+          <div class="ban-card"><div style="font-size:28px;margin-bottom:8px">🔒</div><p style="color:#e5e7eb;font-size:.82rem;font-weight:600;margin:0">Risco mínimo de banimento</p></div>
+          <div class="ban-card"><div style="font-size:28px;margin-bottom:8px">📶</div><p style="color:#e5e7eb;font-size:.82rem;font-weight:600;margin:0">Maior estabilidade e uptime</p></div>
+          <div class="ban-card"><div style="font-size:28px;margin-bottom:8px">✅</div><p style="color:#e5e7eb;font-size:.82rem;font-weight:600;margin:0">Conexão certificada pela Meta</p></div>
+          <div class="ban-card"><div style="font-size:28px;margin-bottom:8px">🛠️</div><p style="color:#e5e7eb;font-size:.82rem;font-weight:600;margin:0">Suporte técnico especializado</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -695,6 +704,71 @@ if(tl)tlObs.observe(tl);
 // NAV SCROLL
 const nav=document.getElementById('mainNav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+
+// PHONE ANIMATION
+(function(){
+  var phone=document.getElementById('phoneMock');
+  var content=document.getElementById('phoneContent');
+  if(!phone||!content)return;
+
+  function addMsg(text,right,delay,timeouts){
+    timeouts.push(setTimeout(function(){
+      var div=document.createElement('div');
+      div.textContent=text;
+      div.style.cssText='background:'+(right?'#dcf8c6':'#fff')+';'
+        +'border-radius:'+(right?'16px 4px 16px 16px':'4px 16px 16px 16px')+';'
+        +'padding:6px 10px;font-size:12px;max-width:75%;margin:4px 8px;color:#111;'
+        +'animation:fadeInUp .3s ease;'
+        +(right?'align-self:flex-end':'');
+      content.appendChild(div);
+    },delay));
+  }
+
+  function runLoop(){
+    var timeouts=[];
+
+    // Fase 1 — conversa
+    phone.style.borderColor='#2d2d2d';
+    phone.style.boxShadow='';
+    phone.style.opacity='1';
+    phone.classList.remove('phone-pulse');
+    content.innerHTML='';
+    content.style.cssText='flex:1;overflow:hidden;background:#ece5dd;display:flex;flex-direction:column;padding:8px 4px';
+    addMsg('Oi! Quero saber o preço 😊',false,500,timeouts);
+    addMsg('Olá! Vou te ajudar agora!',true,1200,timeouts);
+    addMsg('Que ótimo! Qual o prazo?',false,2000,timeouts);
+
+    // Fase 2 — alerta (3s)
+    timeouts.push(setTimeout(function(){
+      phone.style.borderColor='#ef4444';
+      phone.classList.add('phone-pulse');
+      content.innerHTML='';
+      content.style.cssText='flex:1;overflow:hidden;background:#1a0000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px';
+      content.innerHTML='<span style="font-size:48px">⚠️</span><p style="color:#ef4444;font-weight:600;font-size:13px;text-align:center;padding:0 16px;margin:0">Atividade suspeita detectada</p>';
+    },3000));
+
+    // Fase 3 — banimento (5s)
+    timeouts.push(setTimeout(function(){
+      phone.style.boxShadow='0 0 32px #ef4444aa';
+      content.innerHTML='';
+      content.style.cssText='flex:1;overflow:hidden;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 16px';
+      content.innerHTML='<span style="font-size:48px">🚫</span><p style="color:#fff;font-weight:700;font-size:13px;text-align:center;margin:0">Esta conta não pode mais usar o WhatsApp</p><p style="color:#6b7280;font-size:11px;text-align:center;margin:0">Após análise, concluímos que esta conta viola os Termos de Serviço.</p>';
+    },5000));
+
+    // Fase 4 — fade out (9s)
+    timeouts.push(setTimeout(function(){
+      phone.style.opacity='0';
+    },9000));
+
+    // Reset e loop (11s)
+    timeouts.push(setTimeout(function(){
+      phone.classList.remove('phone-pulse');
+      runLoop();
+    },11000));
+  }
+
+  runLoop();
+})();
 </script>
 </body>
 </html>
