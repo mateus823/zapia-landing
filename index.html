@@ -735,36 +735,36 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scr
     content.innerHTML='';
     content.style.cssText='flex:1;overflow:hidden;background:#ece5dd;display:flex;flex-direction:column;padding:8px 4px';
     addMsg('Oi! Quero saber o preço 😊',false,500,timeouts);
-    addMsg('Olá! Vou te ajudar agora!',true,1200,timeouts);
-    addMsg('Que ótimo! Qual o prazo?',false,2000,timeouts);
+    addMsg('Olá! Vou te ajudar agora!',true,2000,timeouts);
+    addMsg('Que ótimo! Qual o prazo?',false,3500,timeouts);
 
-    // Fase 2 — alerta (3s)
+    // Fase 2 — alerta (6s)
     timeouts.push(setTimeout(function(){
       phone.style.borderColor='#ef4444';
       phone.classList.add('phone-pulse');
       content.innerHTML='';
       content.style.cssText='flex:1;overflow:hidden;background:#1a0000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px';
       content.innerHTML='<span style="font-size:48px">⚠️</span><p style="color:#ef4444;font-weight:600;font-size:13px;text-align:center;padding:0 16px;margin:0">Atividade suspeita detectada</p>';
-    },3000));
+    },6000));
 
-    // Fase 3 — banimento (5s)
+    // Fase 3 — banimento (8s)
     timeouts.push(setTimeout(function(){
       phone.style.boxShadow='0 0 32px #ef4444aa';
       content.innerHTML='';
       content.style.cssText='flex:1;overflow:hidden;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 16px';
       content.innerHTML='<span style="font-size:48px">🚫</span><p style="color:#fff;font-weight:700;font-size:13px;text-align:center;margin:0">Esta conta não pode mais usar o WhatsApp</p><p style="color:#6b7280;font-size:11px;text-align:center;margin:0">Após análise, concluímos que esta conta viola os Termos de Serviço.</p>';
-    },5000));
+    },8000));
 
-    // Fase 4 — fade out (9s)
+    // Fase 4 — fade out (12s)
     timeouts.push(setTimeout(function(){
       phone.style.opacity='0';
-    },9000));
+    },12000));
 
-    // Reset e loop (11s)
+    // Reset e loop (14s)
     timeouts.push(setTimeout(function(){
       phone.classList.remove('phone-pulse');
       runLoop();
-    },11000));
+    },14000));
   }
 
   runLoop();
