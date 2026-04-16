@@ -242,6 +242,55 @@
     .footer-links a:hover{color:var(--g)}
     .footer-links .icon-ig{width:14px;height:14px;flex-shrink:0}
 
+    /* FEAT ICON SVG CONTAINER */
+    .feat-icon{width:44px;height:44px;display:flex!important;align-items:center;justify-content:center;background:var(--gd);border:1px solid rgba(0,255,136,.18);border-radius:12px;margin-bottom:1.2rem;flex-shrink:0;font-size:inherit;transition:transform .3s,box-shadow .3s}
+    .feat-icon svg{width:22px;height:22px;stroke:var(--g);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:block}
+    .feat:hover .feat-icon{transform:scale(1.1);box-shadow:0 0 18px rgba(0,255,136,.2)}
+
+    /* COMPARISON — refined header */
+    .comp-table th.th-us{color:var(--g);background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);border-bottom:none;border-radius:12px 12px 0 0}
+    .comp-table td.td-us{color:var(--g);background:rgba(0,255,136,.06);font-weight:500}
+    .comp-table tr:hover td.td-us{background:rgba(0,255,136,.11)}
+
+    /* TESTIMONIALS */
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
+    .testimonial-card{background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.2rem;transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden}
+    .testimonial-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gd) 0%,transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
+    .testimonial-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.45);border-color:rgba(0,255,136,.3)}
+    .testimonial-card:hover::before{opacity:1}
+    .testi-stars{color:var(--g);font-size:.82rem;letter-spacing:.22em}
+    .testi-openquote{font-size:3.8rem;line-height:.55;color:var(--g);opacity:.18;font-family:'Space Grotesk',sans-serif;display:block;margin-bottom:.6rem}
+    .testi-quote{font-size:.875rem;color:var(--td);line-height:1.8;font-weight:300;position:relative;z-index:1;flex:1}
+    .testi-author{display:flex;align-items:center;gap:.85rem;position:relative;z-index:1;margin-top:.4rem}
+    .testi-photo{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,255,136,.28);flex-shrink:0}
+    .testi-name{font-weight:600;font-size:.875rem;font-family:'Space Grotesk',sans-serif;line-height:1.3}
+    .testi-role{font-size:.72rem;color:var(--m);margin-top:.15rem}
+    @media(max-width:1024px){.testimonials-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.testimonials-grid{grid-template-columns:1fr}}
+
+    /* BUSINESS BADGE */
+    .business-badge{display:inline-flex;align-items:center;gap:.35rem;background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,165,0,.07));border:1px solid rgba(255,200,0,.28);color:#FFD700;font-size:.7rem;font-weight:700;padding:.25rem .7rem;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.2rem;font-family:'Space Grotesk',sans-serif}
+
+    /* META BADGE — hero slot */
+    .meta-badge-hero{display:flex;justify-content:center;padding:0 5% 0;margin-top:-1rem;margin-bottom:1.5rem}
+
+    /* FOOTER ENHANCED */
+    footer{padding:4rem 5% 0;border-top:1px solid var(--b)}
+    .footer-cols{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;padding-bottom:3rem}
+    .footer-brand-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:-.025em;text-decoration:none;color:var(--t);display:flex;align-items:center;gap:.5rem;margin-bottom:.9rem}
+    .footer-tagline{font-size:.8rem;color:var(--m);line-height:1.65;margin-bottom:1.2rem;font-weight:300;max-width:210px}
+    .footer-social-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--m);text-decoration:none;transition:color .2s}
+    .footer-social-link:hover{color:var(--g)}
+    .footer-col-title{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--m);margin-bottom:1rem}
+    .footer-col-links{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+    .footer-col-links a{font-size:.8rem;color:var(--td);text-decoration:none;transition:color .2s}
+    .footer-col-links a:hover{color:var(--g)}
+    .footer-bottom{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--b);padding:1.5rem 0}
+    .footer-copy{font-size:.75rem;color:var(--m)}
+    .footer-meta-note{font-size:.72rem;color:var(--m);display:flex;align-items:center;gap:.45rem}
+    .footer-meta-dot{width:5px;height:5px;border-radius:50%;background:var(--g);flex-shrink:0;animation:pulse 2s infinite}
+    @media(max-width:768px){.footer-cols{grid-template-columns:1fr;gap:2rem;padding-bottom:2rem}.footer-bottom{flex-direction:column;text-align:center;gap:.6rem}}
+
     /* RESPONSIVE */
     @media(max-width:1024px){
       .features-grid{grid-template-columns:repeat(2,1fr)}
@@ -359,6 +408,29 @@
   </div>
 </section>
 
+<!-- META BADGE -->
+<div class="meta-badge-hero">
+  <div style="display:flex;justify-content:center;align-items:center;gap:16px;padding:14px 24px;max-width:560px;width:100%;background:linear-gradient(135deg,#0d1117 0%,#111827 100%);border:1px solid #00FF8830;border-radius:20px;position:relative;overflow:hidden;flex-wrap:nowrap">
+    <div style="position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,#00FF8808,transparent);animation:shimmer 3s infinite"></div>
+    <div style="width:36px;height:36px;border-radius:50%;background:#1877f2;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.3px;white-space:nowrap">Meta Business Partner</div>
+      <div style="color:#6b7280;font-size:10px;white-space:nowrap">API Oficial do WhatsApp Business</div>
+    </div>
+    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
+      <div style="width:26px;height:26px;border-radius:50%;background:#00FF8820;border:2px solid #00FF88;display:flex;align-items:center;justify-content:center;font-size:13px">✓</div>
+      <div style="color:#00FF88;font-size:10px;font-weight:600;white-space:nowrap">Verificado</div>
+    </div>
+    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
+      <div style="width:26px;height:26px;border-radius:50%;background:#1877f220;border:2px solid #1877f2;display:flex;align-items:center;justify-content:center;font-size:13px">🛡️</div>
+      <div style="color:#1877f2;font-size:10px;font-weight:600;white-space:nowrap">Tech Provider</div>
+    </div>
+  </div>
+</div>
+
 <!-- STATS -->
 <div class="stats-wrap">
   <div class="stats-grid">
@@ -378,12 +450,12 @@
       <p class="sec-sub">De fluxos automatizados a IA que vende por você — tudo em uma plataforma.</p>
     </div>
     <div class="features-grid reveal d1">
-      <div class="feat"><span class="feat-icon">🤖</span><div class="feat-title">IA Integrada</div><div class="feat-desc">Gemini, GPT-4 e Claude respondendo seus clientes automaticamente, com contexto e personalidade da sua marca.</div></div>
-      <div class="feat"><span class="feat-icon">🔄</span><div class="feat-title">Fluxos Visuais</div><div class="feat-desc">Editor drag-and-drop sem precisar saber programar. Monte seu atendimento completo em minutos.</div></div>
-      <div class="feat"><span class="feat-icon">📱</span><div class="feat-title">API Oficial Meta</div><div class="feat-desc">Risco mínimo de banimento. Parceiro verificado pela Meta com todos os recursos oficiais do WhatsApp Business.</div></div>
-      <div class="feat"><span class="feat-icon">📊</span><div class="feat-title">Inbox em Tempo Real</div><div class="feat-desc">Acompanhe todas as conversas ao vivo em um só lugar. Assuma o controle quando necessário.</div></div>
-      <div class="feat"><span class="feat-icon">⚡</span><div class="feat-title">Disparo de Fluxos</div><div class="feat-desc">Inicie conversas automáticas para seus contatos. Campanhas, follow-ups e reativações no piloto.</div></div>
-      <div class="feat"><span class="feat-icon">🏷️</span><div class="feat-title">Etiquetas e CRM</div><div class="feat-desc">Organize seus contatos, crie tags e tenha o histórico completo de cada cliente em um clique.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M7 9.5H3M7 12H3M7 14.5H3M17 9.5h4M17 12h4M17 14.5h4M9.5 7V3M12 7V3M14.5 7V3M9.5 17v4M12 17v4M14.5 17v4"/></svg></span><div class="feat-title">IA Integrada</div><div class="feat-desc">Gemini, GPT-4 e Claude respondendo seus clientes automaticamente, com contexto e personalidade da sua marca.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><path d="M5 8v3a4 4 0 0 0 4 4M19 8v3a4 4 0 0 1-4 4"/></svg></span><div class="feat-title">Fluxos Visuais</div><div class="feat-desc">Editor drag-and-drop sem precisar saber programar. Monte seu atendimento completo em minutos.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7L12 2z"/><polyline points="9 12 11 14 15 10"/></svg></span><div class="feat-title">API Oficial Meta</div><div class="feat-desc">Risco mínimo de banimento. Parceiro verificado pela Meta com todos os recursos oficiais do WhatsApp Business.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13.5h5"/></svg></span><div class="feat-title">Inbox em Tempo Real</div><div class="feat-desc">Acompanhe todas as conversas ao vivo em um só lugar. Assuma o controle quando necessário.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="feat-title">Disparo de Fluxos</div><div class="feat-desc">Inicie conversas automáticas para seus contatos. Campanhas, follow-ups e reativações no piloto.</div></div>
+      <div class="feat"><span class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1" fill="var(--g)" stroke="none"/></svg></span><div class="feat-title">Etiquetas e CRM</div><div class="feat-desc">Organize seus contatos, crie tags e tenha o histórico completo de cada cliente em um clique.</div></div>
     </div>
   </div>
 </section>
@@ -561,6 +633,7 @@
         <a href="https://pay.cakto.com.br/37hvinp" target="_blank" class="plan-btn plan-btn-solid">Começar agora</a>
       </div>
       <div class="price-card reveal d3">
+        <div class="business-badge">🏢 Para equipes</div>
         <div class="plan-name">Business</div>
         <div class="plan-price"><sup>R$</sup>597</div>
         <div class="plan-period">/mês</div>
@@ -596,29 +669,6 @@
     <p class="cta-note">Sem necessidade de cartão de crédito para começar • Suporte em português</p>
   </div>
 </section>
-
-<!-- META BADGE -->
-<div style="display:flex;justify-content:center;padding:0 5% 4rem">
-  <div style="display:flex;justify-content:center;align-items:center;gap:16px;padding:18px 24px;margin:0 auto 60px auto;max-width:560px;background:linear-gradient(135deg,#0d1117 0%,#111827 100%);border:1px solid #00FF8830;border-radius:20px;position:relative;overflow:hidden;flex-wrap:nowrap">
-    <div style="position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,#00FF8808,transparent);animation:shimmer 3s infinite"></div>
-    <div style="width:36px;height:36px;border-radius:50%;background:#1877f2;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
-    <div style="display:flex;flex-direction:column;gap:4px">
-      <div style="color:#fff;font-size:13px;font-weight:700;letter-spacing:0.3px;white-space:nowrap">Meta Business Partner</div>
-      <div style="color:#6b7280;font-size:10px;white-space:nowrap">API Oficial do WhatsApp Business</div>
-    </div>
-    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
-      <div style="width:26px;height:26px;border-radius:50%;background:#00FF8820;border:2px solid #00FF88;display:flex;align-items:center;justify-content:center;font-size:13px">✓</div>
-      <div style="color:#00FF88;font-size:10px;font-weight:600;white-space:nowrap">Verificado</div>
-    </div>
-    <div style="width:1px;height:28px;background:#ffffff15;flex-shrink:0"></div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0">
-      <div style="width:26px;height:26px;border-radius:50%;background:#1877f220;border:2px solid #1877f2;display:flex;align-items:center;justify-content:center;font-size:13px">🛡️</div>
-      <div style="color:#1877f2;font-size:10px;font-weight:600;white-space:nowrap">Tech Provider</div>
-    </div>
-  </div>
-</div>
 
 <!-- FAQ -->
 <section style="max-width:720px; margin:0 auto 80px auto; padding:0 24px;">
@@ -675,14 +725,39 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="footer-cols">
+    <div>
+      <a href="#" class="footer-brand-logo">
+        <img src="logo.png" alt="Zap Cronos" height="32">
+        <span><span style="color:#00ff88">Zap</span> Cronos</span>
+      </a>
+      <p class="footer-tagline">WhatsApp com IA 24/7.<br>API Oficial Meta.</p>
+      <a href="https://www.instagram.com/zap.cronos/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+    </div>
+    <div>
+      <div class="footer-col-title">Produto</div>
+      <ul class="footer-col-links">
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#precos">Preços</a></li>
+        <li><a href="https://app.zapcronos.com.br/login">Entrar</a></li>
+        <li><a href="https://app.zapcronos.com.br/register">Criar conta</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-col-links">
+        <li><a href="/privacidade.html">Privacidade</a></li>
+        <li><a href="/termos.html">Termos de uso</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
     <div class="footer-copy">© 2025 Zap Cronos. Todos os direitos reservados.</div>
-    <ul class="footer-links">
-      <li><a href="/privacidade.html">Privacidade</a></li>
-      <li><a href="/termos.html">Termos de uso</a></li>
-      <li><a href="https://app.zapcronos.com.br/login">Entrar</a></li>
-      <li><a href="https://www.instagram.com/zap.cronos/" target="_blank" rel="noopener noreferrer"><svg class="icon-ig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram</a></li>
-    </ul>
+    <div class="footer-meta-note"><span class="footer-meta-dot"></span>Parceiro Oficial Meta · API WhatsApp Business</div>
   </div>
 </footer>
 
